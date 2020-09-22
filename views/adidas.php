@@ -9,14 +9,14 @@
             </div>
             
             <div class="modal-body" id="noti-add">
-                Đã thêm vào giỏ hàng!<a href="index.php?page=cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
+                Đã thêm vào giỏ hàng!<a href="cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
             </div>
             
         </div>
     </div>
 </div>
 <?php if (count($rs_pro) < 1) {
-  header('Location: index.php?page=adidas&pages=1');
+  header('Location: 1');
 } ?>
 <div class="ps-section--features-product ps-section masonry-root pt-50 pb-80">
   <div class="ps-container">
@@ -28,8 +28,8 @@
       <div class="ps-product__filter">
           <select class="ps-select selectpicker" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
               <option value="default">SẮP XẾP THEO</option>
-              <option value="index.php?page=adidas&pages=1&method=asc">GÍA TĂNG DẦN</option>
-              <option value="index.php?page=adidas&pages=1&method=desc">GÍA GIẢM DẦN</option>
+              <option value="adidas/1/asc">GÍA TĂNG DẦN</option>
+              <option value="adidas/1/desc">GÍA GIẢM DẦN</option>
           </select>
       </div>
   </div>
@@ -59,7 +59,7 @@
                 
                 
                 <!-- Ảnh sản phẩm -->
-              <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="index.php?page=product-detail&id=<?= $value['id_product'] ?>"></a>
+              <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a>
               </div>
               <div class="ps-shoe__content">
                 <div class="ps-shoe__variants">
@@ -81,7 +81,7 @@
                     
 
                 </div>
-                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><?php echo $value['product_name'] ?></a>
+                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><?php echo $value['product_name'] ?></a>
                   <p >
                     <del><?php
                       if ($value['percent'] > 0) {echo number_format($value['price']).' đ';}?></del>
@@ -113,7 +113,7 @@
 <div class="ps-product-action">
   <div class="ps-pagination">
     <ul class="pagination">
-       <li><a class="page-link" href="index.php?page=adidas&pages=<?php 
+       <li><a class="page-link" href="adidas/<?php 
             if(isset($_GET['pages'])){
               $page = $_GET['pages'];
               if($page <= 1){
@@ -122,16 +122,16 @@
                 echo $page -= 1;
               }
             }
-        ?>&method=<?php echo $method; ?>"><i class="fa fa-angle-left"></i></a></li>
+        ?>/<?php echo $method; ?>"><i class="fa fa-angle-left"></i></a></li>
       <?php  
           for ($i = 1; $i <= $pagination; $i++) { 
         ?>
         
-        <li <?php if (isset($_GET["pages"]) && $_GET["pages"] == $i) {echo 'class="active"';} ?>><a class="page-link" href="index.php?page=adidas&pages=<?php echo $i; ?>&method=<?php echo $method; ?>"><?php echo $i; ?></a></li>
+        <li <?php if (isset($_GET["pages"]) && $_GET["pages"] == $i) {echo 'class="active"';} ?>><a class="page-link" href="adidas/<?php echo $i; ?>/<?php echo $method; ?>"><?php echo $i; ?></a></li>
         <?php
           }
         ?>
-        <li><a href="index.php?page=adidas&pages=<?php 
+        <li><a href="adidas/<?php 
             if(isset($_GET['pages'])){
               $page = $_GET['pages'];
               if($page == $pagination){
@@ -140,7 +140,7 @@
                 echo $page += 1;
               }
             }
-        ?>&method=<?php echo $method; ?>"><i class="fa fa-angle-right"></i></a></li>
+        ?>/<?php echo $method; ?>"><i class="fa fa-angle-right"></i></a></li>
      <!--  <li><a href="#">...</a></li> -->
       
     </ul>

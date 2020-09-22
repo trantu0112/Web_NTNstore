@@ -4,17 +4,15 @@
 	 */
 	class Connect
 	{
-		private $strCon = 'mysql:host=localhost;dbname=db_shop_shoes';
-		private $user = 'root';
-		private $passw = '';
+		private $strCon = 'mysql:host=localhost;dbname=PHP0320E2_nhom1';
+		private $user = 'PHP0320E2_nhom1';
+		private $passw = 'PHP0320E2_nhom1*';
 		protected $pdo = null;
-		// public $last_id;
 		function __construct()
 		{
 			try {
 				$this->pdo = new PDO($this->strCon, $this->user, $this->passw);
 				$this->pdo->query('SET NAMES utf8');
-				// echo $this->pdo->lastInsertId();
 			} catch (PDOException $e) {
 				exit();
 			}

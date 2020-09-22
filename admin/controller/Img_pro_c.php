@@ -21,100 +21,73 @@
 			switch ($method) {
 				case 'add':
 					if (isset($_POST['sm_add'])) {
-						$name = $_POST['name'];
-						$file_1 = $_FILES['img_1'];
-						$file_2 = $_FILES['img_2'];
-						$file_3 = $_FILES['img_3'];
-
-						$img_1 = $file_1['name'];
-						$img_2 = $file_2['name'];
-						$img_3 = $file_3['name'];
-
-						if ($img_1 == '' && $img_2 == '' && $img_3 == '') {
-							$img_1 = 'img_avarta.png';
-							$img_2 = 'img_avarta.png';
-							$img_3 = 'img_avarta.png';
-						}else{
-							$img_1 = $name.'_'.$file_1['name'];
-							$img_2 = $name.'_'.$file_2['name'];
-							$img_3 = $name.'_'.$file_3['name'];
+						$id_product = $_POST['name'];
+						
+						$file = $_FILES['avatar'];
+					
+						$countFile = count($file['name']);
+						for ($i=0; $i < $countFile; $i++) {
+							$fileName = $name.$file['name'][$i]; //lấy thời gian đặt tên file để ko bị trùng 
+							move_uploaded_file($file["tmp_name"][$i], "images/img_detail/".$fileName);
+							$this->img->addImg($id_product, $fileName);
+							// $check = getimagesize($file['tmp_name'][$i]);	
+							// if ($check == true && $file['size'][$i] < $maxfileSize) {
+							// 	array_push($arrnameFile, $fileName);
+							// 	move_uploaded_file($file["tmp_name"][$i], "img/".$fileName);
+							// 	$allowUpload = true;
+							// }else{
+							// 	$allowUpload = false;
+							// }				
 						}
-						move_uploaded_file($file_1["tmp_name"], "images/img_detail/".$img_1);
-						move_uploaded_file($file_2["tmp_name"], "images/img_detail/".$img_2);
-						move_uploaded_file($file_3["tmp_name"], "images/img_detail/".$img_3);
-						$this->img->addImg($name, $img_1, $img_2, $img_3);
+						header('Location: index.php?page=list-img&id='.$id_product);
 
 					}
 					$rs_name_img = $this->img->getNameImg();
 					include_once 'views/img_pro_detail/add-img.php';
 					break;
 				case 'edit':
-					$rs_img = $this->img->getImg();
 					if (isset($_GET['id'])) {
 						$id = $_GET['id'];
-						foreach ($rs_img as $key => $value) {
-							if ($id == $value['id_product']) {
-								$_SESSION['name'] = $value['product_name'];
-								$img_1_o = $value['name_img_1'];
-								$img_2_o = $value['name_img_2'];
-								$img_3_o = $value['name_img_3'];
+						$id_product = $_GET['id_product'];
+						$rs_img = $this->img->getImg($id);
+						if (count($rs_img) == 0) {
+							header("Location: index.php?page=list-product");
+						}
+						$_SESSION['name'] = $rs_img[0]['product_name'];
+						$img_o = $rs_img[0]['name_img'];
 
-							}	
+						if (isset($_POST['sm_edit'])) {
+							$file = $_FILES['img'];
+							$img_n = $file['name'];
+
+							if ($img_n == '') {
+								$img = $img_o;
+							}else{
+								$img_n = $img_o;
+								$img = $img_n;
+							}
+							move_uploaded_file($file["tmp_name"], "images/img_detail/".$img);
+							unset($_SESSION['name']);
+							header('Location: index.php?page=list-img&id='.$id_product);
+
 						}
 					}
-					if (isset($_POST['sm_edit'])) {
-						$name = $_POST['name'];
-
-						$file_1 = $_FILES['img_1'];
-						$file_2 = $_FILES['img_2'];
-						$file_3 = $_FILES['img_3'];
-
-						$img_1_n = $file_1['name'];
-						$img_2_n = $file_2['name'];
-						$img_3_n = $file_3['name'];
-
-						if ($img_1_n == '' && $img_2_n == '' && $img_3_n == '') {
-							$img_1 = $img_1_o;
-							$img_2 = $img_2_o;
-							$img_3 = $img_3_o;
-						}else{
-							$img_1_n = $img_1_o;
-							$img_1 = $img_1_n;
-
-							$img_2_n = $img_2_o;
-							$img_2 = $img_2_n;
-
-							$img_3_n = $img_3_o;
-							$img_3 = $img_3_n;
-						}
-						move_uploaded_file($file_1["tmp_name"], "images/img_detail/".$img_1);
-						move_uploaded_file($file_2["tmp_name"], "images/img_detail/".$img_2);
-						move_uploaded_file($file_3["tmp_name"], "images/img_detail/".$img_3);
-						unset($_SESSION['name']);
-						header('Location: index.php?page=list-img');
-					}
+					
 					include_once 'views/img_pro_detail/edit-img.php';
 					break;
 				case 'del':
 					if (isset($_GET['id'])) {
 						$id = $_GET['id'];
+						$id_product = $_GET['id_product'];
 						$this->img->delImg($id);
+						header('Location: index.php?page=list-img&id='.$id_product);
 					}
 					break;
-				
 				default:
-						$row = 7; // số tin một trang
-						$number = count($this->img->getNumber()); // Tổng số bản ghi
-						$pagination = ceil($number/$row);
-						
-						if (isset($_GET['pages'])) {
-							$pages = $_GET['pages'];
-						}else{
-							$pages = 1;
-						}
-						
-						$from = ($pages - 1) * $row;
-						$rs_img = $this->img->getPageImg($from, $row);
+					if (isset($_GET['id'])) {
+						$id_product = $_GET['id'];
+						$rs_name = $this->img->getIdImg($id_product);
+					}		
 					include_once 'views/img_pro_detail/list-img.php';
 					break;
 			}

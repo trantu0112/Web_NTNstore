@@ -30,7 +30,7 @@ Cập nhật thành công!</div>
                   }
           ?>
             <tr>
-              <td><a class="ps-product__preview" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><img style="width: 50px;height: 50px;" class="mr-15" src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""> <?php echo $value['product_name']; ?></a></td>
+              <td><a class="ps-product__preview" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><img style="width: 50px;height: 50px;" class="mr-15" src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""> <?php echo $value['product_name']; ?></a></td>
               <td><input style="width: 25px;" readonly="" type="text" name="" value="<?php echo $value['size'] ?>"></td>
               <td><?php 
                 if ($value['percent'] <= 0) {
@@ -133,7 +133,7 @@ Cập nhật thành công!</div>
             echo "alert('Không tồn tại sản phẩm trong giỏ hàng!')";
           }?> "
           <?php if (isset($total) && $total > 0) {
-            echo "href='index.php?page=check-out'";
+            echo "href='check-out'";
           } ?>>Mua hàng<i class="ps-icon-next"></i></a>
         </div>
         </div>

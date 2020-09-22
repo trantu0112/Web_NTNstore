@@ -363,6 +363,26 @@
 			return $pre->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		//Kiểm tra mail duy nhất
+		public function checkEmail($email){
+			$sql = "SELECT email FROM tbl_account WHERE email = :email";
+			$pre = $this->pdo->prepare($sql);
+			$pre->bindParam(':email', $email);
+			$pre->execute();
+			return $pre->fetchAll(PDO::FETCH_ASSOC);
+		}
+		
+		//Cập nhật lại mật khẩu
+		public function resetPass($email, $password){
+			$sql = "UPDATE tbl_account SET password = :password WHERE email = :email";
+			$pre = $this->pdo->prepare($sql);
+			$pre->bindParam(':email', $email);
+			$pre->bindParam(':password', $password);
+			if($pre->execute()){
+				unset($_SESSION['rand']);
+			}
+		}
+
 	}
 
  ?>

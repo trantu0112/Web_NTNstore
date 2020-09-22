@@ -9,7 +9,7 @@
             </div>
             
             <div class="modal-body" id="noti-add">
-                Đã thêm vào giỏ hàng!<a href="index.php?page=cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
+                Đã thêm vào giỏ hàng!<a href="cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
             </div>
             
         </div>
@@ -17,7 +17,7 @@
 </div>
 <?php
   if (!isset($rs_pro) || $_GET['pages'] < 0 || $_GET['pages'] == '') {
-     header('Location: index.php?page=home');
+     header('Location: home');
   }
  else if (count($rs_pro) < 1){
 ?>
@@ -78,7 +78,7 @@
                 <?php
                 } ?>
                 <!-- Ảnh sản phẩm -->
-              <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="index.php?page=product-detail&id=<?= $value['id_product'] ?>"></a>
+              <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a>
               </div>
               <div class="ps-shoe__content">
                 <div class="ps-shoe__variants">
@@ -100,7 +100,7 @@
                     
 
                 </div>
-                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><?php echo $value['product_name'] ?></a>
+                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><?php echo $value['product_name'] ?></a>
                   <p >
                     <del><?php
                       if ($value['percent'] > 0) {echo number_format($value['price']).' đ';}?></del>
@@ -132,10 +132,13 @@
 <?php
 }
 ?>
+<?php
+  if (count($rs_pro) > 1){
+?>
 <div class="ps-product-action">
   <div class="ps-pagination">
     <ul class="pagination">
-      <li><a class="page-link" href="index.php?page=search-product&pages=<?php 
+      <li><a class="page-link" href="search-product/<?php 
             if(isset($_GET['pages'])){
               $page = $_GET['pages'];
               if($page <= 1){
@@ -152,7 +155,7 @@
         <?php
           }
         ?>
-        <li><a href="index.php?page=search-product&pages=<?php 
+        <li><a href="search-product/<?php 
             if(isset($_GET['pages'])){
               $page = $_GET['pages'];
               if($page == $pagination){
@@ -165,3 +168,6 @@
     </ul>
   </div>
 </div>
+<?php
+  }
+?>

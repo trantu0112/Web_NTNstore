@@ -80,6 +80,20 @@
 			$pre->execute();
 		}
 
+		//xóa mã giảm giá
+		public function delOrder($id_order){
+			$sql = "DELETE FROM tbl_order WHERE tbl_order.id_order = :id_order";
+			$pre = $this->pdo->prepare($sql);
+
+			$pre->bindParam(':id_order',$id_order);
+
+			if ($pre->execute()) {
+				header('Location: index.php?page=list-order');
+			}else{
+				echo "Không thể xóa!";
+			}
+		}
+
 	}
 
  ?>

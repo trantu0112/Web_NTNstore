@@ -10,7 +10,7 @@
             </div>
             
             <div class="modal-body" id="noti-add">
-                Đã thêm vào giỏ hàng!<a href="index.php?page=cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
+                Đã thêm vào giỏ hàng!<a href="cart"><img title="click vào để đến giỏ hàng!" style="width: 30.16px;height: 30.16px; padding-left: 5px;" src="https://media.istockphoto.com/vectors/shopping-cart-icon-silhouette-2-vector-id898295684?k=6&m=898295684&s=170667a&w=0&h=onBaadKObDlxDfDkefq0qFQv6hdKzp4EPGzol8DX8U8="></a>
             </div>
             
         </div>
@@ -32,7 +32,7 @@
             
             <div class="modal-body">
                     <h3 style="padding-bottom: 30px;">Bạn chưa đăng nhập. Hãy Đăng nhập để đánh giá!</h3>
-                    <button class="btn btn_sm"><a href="index.php?page=login">Đăng nhập</a></button>
+                    <button class="btn btn_sm"><a href="login">Đăng nhập</a></button>
             </div>
             
         </div>
@@ -87,7 +87,7 @@
                   <div class="ps-badge"><span>New</span></div>
                   <div class="ps-badge ps-badge--sale ps-badge--2nd" <?php if ($value['percent'] <= 0) { echo "style='opacity: 0;'";; } ?>><span><?php echo $value['percent'] ?>%</span></div>
                   <!-- Ảnh sản phẩm -->
-                <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="index.php?page=product-detail&id=<?= $value['id_product'] ?>"></a>
+                <img src="admin/images/product/<?= $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a>
                 </div>
                 <div class="ps-shoe__content">
                   <div class="ps-shoe__variants">
@@ -109,7 +109,7 @@
                       
 
                   </div>
-                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><?php echo $value['product_name'] ?></a>
+                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><?php echo $value['product_name'] ?></a>
                     <p >
                       <del><?php
                         if ($value['percent'] > 0) {echo number_format($value['price']).' đ';}?></del>
@@ -142,8 +142,8 @@
 
 <!-- banner ở giữa -->
 <div class="ps-section--offer">
-  <div class="ps-column"><a class="ps-offer" href="index.php"><img src="admin/images/banner/home-banner-1.png" alt=""></a></div>
-  <div class="ps-column"><a class="ps-offer" href="index.php"><img src="admin/images/banner/home-banner-2.png" alt=""></a></div>
+  <div class="ps-column"><a class="ps-offer" href="home"><img src="admin/images/banner/home-banner-1.png" alt=""></a></div>
+  <div class="ps-column"><a class="ps-offer" href="home"><img src="admin/images/banner/home-banner-2.png" alt=""></a></div>
 </div>
 
 <!-- top sales -->
@@ -191,7 +191,7 @@
                   <div class="ps-badge" style="background: #cf5050"><span><?php echo $value['percent'] ?>%</span></div>
                   <!-- <div class="ps-badge ps-badge--sale ps-badge--2nd" ><span></span></div> -->
                   <!-- Ảnh sản phẩm -->
-                <img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"></a>
+                <img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a>
                 </div>
                 <div class="ps-shoe__content">
                   <div class="ps-shoe__variants">
@@ -213,7 +213,7 @@
                       
 
                   </div>
-                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><?php echo $value['product_name'] ?></a>
+                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><?php echo $value['product_name'] ?></a>
                     <p >
                       <del><?php
                         if ($value['percent'] > 0) {echo number_format($value['price']).' đ';}?></del>

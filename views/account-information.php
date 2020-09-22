@@ -66,7 +66,7 @@
               <div class="profile_pic">
                 <center>
                   <img style="width: 100px; height: 100px;margin-top: 20px;margin-bottom: 20px;" src="admin/images/account/<?php echo $rs_acc['img_avarta'] ?>" alt="..." class="img-circle profile_img">
-                 <input type="file" class="form-control-file" style="width: 100px;" value="Chọn ảnh">
+                 <input type="file" class="form-control-file" style="width: 100px;">
                </center>
               </div>
             </div>
@@ -119,7 +119,6 @@
                 </div>
 
                 <center><button style="margin-top: 20px;" id="sm_update_pass" class="btn btn-success">Lưu</button></center>
-                <a style="font-size: 20px; color: #2AC37D;" href=""> Quên mật khẩu! </a>
               </div>
             </div>
             <div class="col-md-3">

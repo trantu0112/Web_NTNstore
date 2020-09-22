@@ -42,7 +42,6 @@
 
           <li><a><i class="fa fa-edit"></i> Quản lý chi tiết ảnh SP<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="index.php?page=list-img&method=list">Danh sách ảnh SP</a></li>
               <?php if (!isset($_SESSION['nv'])) {
               ?>
               <li><a href="index.php?page=list-img&method=add">Thêm ảnh</a></li>

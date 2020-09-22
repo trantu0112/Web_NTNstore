@@ -15,10 +15,11 @@
 Thông tin đơn hàng không hợp lệ! Yêu cầu nhập lại.</div>
 <?php
 unset($_SESSION['add_account']);} ?>
-
 <?php 
   if (!isset($_SESSION['cart'])) {
-    header("Location: index.php?page=home");
+    header("Location: home");
+  }else if($_SESSION['sum'] == 0){
+    header("Location: home");
   }
 ?> 
 <div class="ps-checkout pt-80 pb-80">
@@ -59,7 +60,7 @@ unset($_SESSION['add_account']);} ?>
                       <?php
                       }else{
                       ?>
-                      <label style="font-size: 16px;line-height: 1.3em;color: #2AC37D;font-weight: 400;">Số điện thoại và địa chỉ của bạn chưa có hãy vào cập nhật ngay => </label><a href="index.php?page=account-information"> <strong>Cập nhật</strong></a>
+                      <label style="font-size: 16px;line-height: 1.3em;color: #2AC37D;font-weight: 400;">Số điện thoại và địa chỉ của bạn chưa có hãy vào cập nhật ngay => </label><a href="account-information"> <strong>Cập nhật</strong></a>
                       <?php
                       } ?>
                       
@@ -163,8 +164,8 @@ unset($_SESSION['add_account']);} ?>
                               foreach ($size as $key => $value) {
                         ?>
                     <div class="ps-cart-item">
-                      <div class="ps-cart-item__thumbnail"><a href="index.php?page=product-detail"></a><img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""></div>
-                      <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="index.php?page=product-detail"><span><?php echo $value['product_name'] ?></span></a>
+                      <div class="ps-cart-item__thumbnail"><a href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a><img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""></div>
+                      <div class="ps-cart-item__content"><a class="ps-cart-item__title" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><span><?php echo $value['product_name'] ?></span></a>
                         <p>Số lượng:<i><?php echo $value['qty'] ?></i></p><p>Giá:<i><?php  
                           if ($value['percent'] <= 0) {
                               $total = $value['qty'] * $value['price']; 

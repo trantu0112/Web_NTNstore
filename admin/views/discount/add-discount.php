@@ -1,3 +1,6 @@
+<?php if (isset($_SESSION['nv'])) {
+    header("Location: index.php?page=home");
+} ?>
 <form action="" method="POST" onsubmit="return validition()" enctype="multipart/form-data">
 	<legend>Thêm mới mã giảm giá</legend>
 	<div class="form-group">

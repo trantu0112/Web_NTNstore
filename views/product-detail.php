@@ -16,7 +16,7 @@
               </div>
               
               <div class="modal-body" id="noti-add">
-                  Đã thêm vào giỏ hàng!<a href="index.php?page=cart"><img title="click vào để đến giỏ hàng!" style="width: 40px;height: 40px; padding-left: 5px;" src="https://cdn.iconscout.com/icon/free/png-256/shopping-cart-442-1151214.png"></a>
+                  Đã thêm vào giỏ hàng!<a href="cart"><img title="click vào để đến giỏ hàng!" style="width: 40px;height: 40px; padding-left: 5px;" src="https://cdn.iconscout.com/icon/free/png-256/shopping-cart-442-1151214.png"></a>
               </div>
               
           </div>
@@ -47,7 +47,7 @@
             ?>
             <div class="modal-body">
                     <h3 style="padding-bottom: 30px;">Bạn chưa đăng nhập. Hãy Đăng nhập để đánh giá!</h1>
-                    <button class="btn btn_sm"><a href="index.php?page=login">Đăng nhập</a></button>
+                    <button class="btn btn_sm"><a href="login">Đăng nhập</a></button>
             </div>
 
             <?php
@@ -69,7 +69,7 @@
             
             <div class="modal-body">
                     <h3 style="padding-bottom: 30px;">Bạn chưa đăng nhập. Hãy Đăng nhập để đánh giá!</h1>
-                    <button class="btn btn_sm"><a href="index.php?page=login">Đăng nhập</a></button>
+                    <button class="btn btn_sm"><a href="login">Đăng nhập</a></button>
             </div>
             
         </div>
@@ -90,16 +90,21 @@
       <div class="col-lg-10 col-md-12 col-lg-offset-1">
         <div class="ps-product__thumbnail">
           <div class="ps-product__preview">
+
             <div class="ps-product__variants">
-              <div class="item"><img src="admin/images/img_detail/<?php echo $rs_detail['name_img_1'] ?>" alt=""></div>
-              <div class="item"><img src="admin/images/img_detail/<?php echo $rs_detail['name_img_2'] ?>" alt=""></div>
-              <div class="item"><img src="admin/images/img_detail/<?php echo $rs_detail['name_img_3'] ?>" alt=""></div>
-            </div>
+              <?php foreach ($rs_detail as $key => $value) {
+               ?>
+               <div class="item"><img src="admin/images/img_detail/<?php echo $value['name_img'] ?>" alt=""></div>
+               <?php
+              } ?>
+            </div><a class="popup-youtube ps-product__video" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><img src="../publics/images/shoe-detail/1.jpg" alt=""><i class="fa fa-play"></i></a>
           </div>
           <div class="ps-product__image">
-            <div class="item"><img class="zoom" src="admin/images/img_detail/<?php echo $rs_detail['name_img_1'] ?>" alt="" data-zoom-image="admin/images/img_detail/<?php echo $rs_detail['name_img_1'] ?>"></div>
-            <div class="item"><img class="zoom" src="admin/images/img_detail/<?php echo $rs_detail['name_img_2'] ?>" alt="" data-zoom-image="admin/images/img_detail/<?php echo $rs_detail['name_img_2'] ?>"></div>
-            <div class="item"><img class="zoom" src="admin/images/img_detail/<?php echo $rs_detail['name_img_3'] ?>" alt="" data-zoom-image="admin/images/img_detail/<?php echo $rs_detail['name_img_3'] ?>"></div>
+            <?php foreach ($rs_detail as $key => $value) {
+               ?>
+            <div class="item"><img class="zoom" src="admin/images/img_detail/<?php echo $value['name_img'] ?>" alt="" data-zoom-image="admin/images/img_detail/<?php echo $rs_detail['name_img'] ?>"></div>
+            <?php
+              } ?>
           </div>
         </div>
         <div class="ps-product__thumbnail--mobile">
@@ -319,7 +324,7 @@
                       }
                    ?>
                   
-                  <p><a> <?php echo $value['display_name'] ?> </a><?php echo date("H:i:s - d/m/Y",strtotime($value['day_create']));?>
+                  <p><a> <?php echo $value['display_name'] ?> </a><?php echo date("H:i - d/m/Y",strtotime($value['day_create']));?>
                 </header>
                 <p><?php echo $value['rating_proc'] ?></p>
               </div>
@@ -367,7 +372,7 @@
                  
                   <!-- <div class="ps-badge ps-badge--sale ps-badge--2nd" ><span></span></div> -->
                   <!-- Ảnh sản phẩm -->
-                <img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"></a>
+                <img src="admin/images/product/<?php echo $value['cate_name'].'/'.$value['img'] ?>" alt=""><a class="ps-shoe__overlay" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"></a>
                 </div>
                 <div class="ps-shoe__content">
                   <div class="ps-shoe__variants">
@@ -389,7 +394,7 @@
                       
 
                   </div>
-                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="index.php?page=product-detail&id=<?php echo $value['id_product'] ?>"><?php echo $value['product_name'] ?></a>
+                  <div class="ps-shoe__detail"><a class="ps-shoe__name" href="product-detail/<?php echo $value['id_product'].'/'.makeUrl($value['product_name']) ?>"><?php echo $value['product_name'] ?></a>
                     <p >
                       <del><?php
                         if ($value['percent'] > 0) {echo number_format($value['price']).' đ';}?></del>

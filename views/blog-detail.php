@@ -15,7 +15,7 @@
                         <?php echo $value['content'] ?>
                     </div>
                     <div class="ps-post__footer">
-                      <p class="ps-post__tags"><i class="fa fa-tags"></i><a href="index.php?page=adidas&pages=1"> Adidas</a>,<a href="index.php?page=nike&pages=1"> Nike</a>,<a href="index.php?page=vans&pages=1"> Vans</a></p>
+                      <p class="ps-post__tags"><i class="fa fa-tags"></i><a href="adidas/1"> Adidas</a>,<a href="nike/1"> Nike</a>,<a href="vans/1"> Vans</a></p>
                       <div class="ps-post__actions">
                           <div class="fb-like" data-href="https://www.facebook.com/NTN-STORE-103288208184723" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
                       </div>
@@ -44,8 +44,8 @@
                       foreach ($rs_blog as $key => $value) {
                       ?>
                       <div class="ps-post mb-10">
-                          <div class="ps-post__thumbnail"><img style="width: 400px; height: 200px;" src="admin/images/blog/<?php echo $value['post_avatar'] ?>" alt=""><a class="ps-post__overlay" href="index.php?page=blog-detail&id=<?php echo $value['id_post'] ?>"></a></div>
-                          <div class="ps-post__content"><a class="ps-post__title" href="index.php?page=blog-detail&id=<?php echo $value['id_post'] ?>"><?php echo $value['post_name'] ?></a>
+                          <div class="ps-post__thumbnail"><img style="width: 400px; height: 200px;" src="admin/images/blog/<?php echo $value['post_avatar'] ?>" alt=""><a class="ps-post__overlay" href="blog-detail/<?php echo $value['id_post'].'/'.makeUrl($value['post_name']); ?>"></a></div>
+                          <div class="ps-post__content"><a class="ps-post__title" href="blog-detail/<?php echo $value['id_post'].'/'.makeUrl($value['post_name']); ?>"><?php echo $value['post_name'] ?></a>
                               <p class="ps-post__meta"><i class="fa fa-clock-o"></i> -<span class="ml-5"><?php echo $value['dateTime'] ?></span></p>
                           </div>
                       </div>

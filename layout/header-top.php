@@ -10,16 +10,16 @@
           <?php 
             if (isset($_SESSION['name_acc_home'])) {
           ?>
-            <a href="index.php?page=account-information"><?php if (isset($_SESSION['name_acc_home'])) {echo 'Xin chào: '.$_SESSION['name_acc_home'];} ?></a>
+            <a href="account-information"><?php if (isset($_SESSION['name_acc_home'])) {echo 'Xin chào: '.$_SESSION['name_acc_home'];} ?></a>
             <a href="index.php?page=logout">Đăng xuất</a>
           <?php
             }else if(isset($_SESSION['name_acc_admin'])){
           ?>
-            <a href="admin/index.php">ADMIN</a>
+            <a href="admin">ADMIN</a>
           <?php
             }else{
           ?>
-            <a href="index.php?page=login">Tài Khoản <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+            <a href="login">Tài Khoản <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
           <?php   
             }
            ?>

@@ -1,3 +1,6 @@
+<?php if (isset($_SESSION['nv'])) {
+  header("Location: index.php?page=home");
+} ?>
 <h3> Chỉnh sửa danh mục</h3>
 <p>Tên danh mục</p>
 <form action="" method="POST">

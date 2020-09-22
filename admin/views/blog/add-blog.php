@@ -1,3 +1,6 @@
+<?php if (isset($_SESSION['nv'])) {
+	header("Location: index.php?page=home");
+} ?>
 <form action="" method="POST" enctype="multipart/form-data">
 	<legend>Thêm mới bài viết</legend>
 	<div class="form-group">

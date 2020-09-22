@@ -38,22 +38,22 @@
                 <li>
                   <?php if (!isset($_SESSION['id_account'])) {
                   ?>
-                  <a href="index.php?page=login">Thông tin tài khoản</a>
+                  <a href="login">Thông tin tài khoản</a>
                   <?php
                   }else{
                   ?>
-                  <a href="index.php?page=account-information">Thông tin tài khoản</a>
+                  <a href="account-information">Thông tin tài khoản</a>
                   <?php
                   } ?>
                 </li>
                  <li>
                   <?php if (!isset($_SESSION['id_account'])) {
                   ?>
-                  <a href="index.php?page=login">Thông tin tài khoản</a>
+                  <a href="login">Thông tin tài khoản</a>
                   <?php
                   }else{
                   ?>
-                   <li><a href="index.php?page=view-order">Trạng thái đơn hàng</a></li>
+                   <li><a href="view-order">Trạng thái đơn hàng</a></li>
                   <?php
                   } ?>
                 </li>
@@ -61,7 +61,7 @@
               </ul>
             </footer>
           </aside>
-            <div class="fb-page" data-href="https://www.facebook.com/NTN-STORE-103288208184723" data-tabs="timeline" data-width="210" data-height="70" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
+            <div style="margin-top: 15px;" class="fb-page" data-href="https://www.facebook.com/NTN-STORE-103288208184723" data-tabs="timeline" data-width="210" data-height="70" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
                 <blockquote cite="https://www.facebook.com/NTN-STORE-103288208184723" class="fb-xfbml-parse-ignore">
                     <a href="https://www.facebook.com/NTN-STORE-103288208184723">NTN STORE
                     </a>
@@ -75,9 +75,9 @@
             </header>
             <footer>
               <ul class="ps-list--line">
-                <li><a href="index.php?page=adidas">Adidas</a></li>
-                <li><a href="index.php?page=nike">Nike</a></li>
-                <li><a href="index.php?page=vans">Vans</a></li>
+                <li><a href="adidas/1">Adidas</a></li>
+                <li><a href="nike/1">Nike</a></li>
+                <li><a href="vans/1">Vans</a></li>
               </ul>
             </footer>
           </aside>
@@ -89,7 +89,7 @@
     <div class="ps-container">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
-          <p>&copy; <a href="index.php">NTN</a>, Inc. All rights Resevered. Design by <a href="index.php"> NTN</a></p>
+          <p>&copy; <a href="index.php">NTN</a>, Inc. All rights Resevered. Design by <a href="home"> NTN</a></p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
           <ul class="ps-social">
@@ -103,4 +103,27 @@
     </div>
   </div>
 </div>
-<div class="zalo-chat-widget" data-oaid="3517336795822052066" data-welcome-message="Chúng tôi bán các loại giày Nike, Adidas, Jordan Authentic. Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v8.0'
+          });
+        };
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="103288208184723"
+  theme_color="#ff7e29"
+  logged_in_greeting="Hi! How can we help you?"
+  logged_out_greeting="Hi! How can we help you?">
+</div>

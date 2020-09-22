@@ -1,3 +1,6 @@
+<?php if (isset($_SESSION['nv'])) {
+    header("Location: index.php?page=home");
+} ?>
 <div class="col-md-12">
     <div class="panel panel-primary">
         <div class="panel-heading">Chỉnh sửa bài viết</div>

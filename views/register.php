@@ -46,7 +46,7 @@
                 </div>                                                                       
                 <div class="form-group">
                     <button type="submit" name="sm_add" class="ps-btn">Đăng ký<i class="ps-icon-next"></i></button>
-                    <h4>Bạn đã có tài khoản <a href="login.php" style="color: red;">Đăng nhập</a></h4>                   
+                    <h4>Bạn đã có tài khoản <a href="login" style="color: red;">Đăng nhập</a></h4>                   
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 "></div>

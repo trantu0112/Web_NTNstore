@@ -19,6 +19,12 @@
 			}
 
 			switch ($method) {
+				case 'del':
+					if (isset($_GET['id'])) {
+						$id_order = $_GET['id'];
+						$this->order->delOrder($id_order);
+					}
+					break;
 				case 'detail-order':
 					if (isset($_GET['id-acc'])) {
 						$id_account = $_GET['id-acc'];

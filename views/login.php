@@ -19,7 +19,9 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" name="sm_login" class="ps-btn">Đăng nhập<i class="ps-icon-next"></i></button>
-                    <h4>Nếu bạn chưa có tài khoản? <a href="index.php?page=register" style="color: red;">Đăng ký</a></h4>     
+                    <span><a href="index.php?page=reset" style="color: red; float: right; padding-top: 15px;font-size: 18px;">Quên mật khẩu</a></span>  
+                    <h4>Nếu bạn chưa có tài khoản? <a href="register" style="color: red;">Đăng ký</a></h4>     
+                       
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 "></div>

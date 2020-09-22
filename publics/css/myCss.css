@@ -70,6 +70,7 @@ button.close {
     border-radius: 40px;
     font-size: 13px;
     color: #767779;
+    position: relative;
 }
 .icon_sr{
     position: absolute;

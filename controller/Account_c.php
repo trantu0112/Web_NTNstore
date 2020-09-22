@@ -18,13 +18,16 @@
 				$page = 'login';
 			}
 			switch ($page) {
+				case 'reset':
+					include_once 'views/reset.php';
+					break;
 				case 'account-information':
 					if (isset($_SESSION['id_account'])) {
 						$id_account = $_SESSION['id_account'];
 						$rs_acc = $this->acc->getIdAcc($id_account);
 						$rs_acc = $rs_acc[0];
 					}else{
-						header('Location: index.php?page=home');
+						header('Location: home');
 					}
 					include_once 'views/account-information.php';
 					break;
@@ -38,7 +41,7 @@
 					unset($_SESSION['process']);
 					unset($_SESSION['done']);
 					unset($_SESSION['cancel']);
-					header('Location: index.php?page=login');
+					header('Location: login');
 					break;
 				case 'register':
 					if (isset($_POST['sm_add'])) {
@@ -58,7 +61,7 @@
 								unset($_SESSION['name']);
 								unset($_SESSION['email_up']);
 							}
-							header('Location: index.php?page=login');
+							header('Location: login');
 						}
 					}
 					include_once 'views/register.php';
@@ -94,7 +97,7 @@
 									$_SESSION['img_avarta'] = $img_avarta;
 									$_SESSION['id_account'] = $rs[0]['id_account'];
 									$_SESSION['name_acc_home'] = $rs[0]['display_name'];
-									header("Location: index.php?page=home");
+									header("Location: home");
 									break;
 							}
 							if (isset($_SESSION['check_acc'])) {
@@ -107,7 +110,7 @@
 						}
 					}
 					if (isset($_SESSION['name_acc_home'])) {
-						header("Location: index.php?page=home");
+						header("Location: home");
 					}else if(isset($_SESSION['name_acc_admin'])){
 						header("Location: admin/index.php");
 					}

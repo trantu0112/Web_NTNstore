@@ -4,12 +4,12 @@
       <ul class="nav side-menu">
         <li><i class="fa fa-home"></i> Tài khoản của tôi
           <ul class="nav child_menu">
-            <li><a href="index.php?page=account-information">Hồ sơ</a></li>
+            <li><a href="account-information">Hồ sơ</a></li>
           </ul>
         </li>
       </ul>
       <ul>
-         <li><a href="index.php?page=view-order"><i class="fa fa-home"></i> Đơn hàng</a></li>
+         <li><a href="view-order"><i class="fa fa-home"></i> Đơn hàng</a></li>
       </ul>
     </div>
     <div class="col-md-9 col-right-menu">    

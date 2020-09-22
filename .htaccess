@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteRule "^([a-z]+)$" "index.php?page=$1"
+ErrorDocument 404 http://php0320e2-1.itpsoft.com.vn/error
+
+RewriteRule "home" "index.php"
+RewriteRule "^([a-zA-Z0-9]+)/([0-9]+)$" "index.php?page=$1&pages=$2"
+RewriteRule "^([a-zA-Z-]+)$" "index.php?page=$1"
+RewriteRule "^product-detail/([0-9]+)/([a-zA-Z0-9-]+)$" "index.php?page=product-detail&id=$1&name=$2"
+RewriteRule "^adidas/([0-9]+)/([a-z]+)$" "index.php?page=adidas&pages=$1&method=$2"
+RewriteRule "^nike/([0-9]+)/([a-z]+)$" "index.php?page=nike&pages=$1&method=$2"
+RewriteRule "^vans/([0-9]+)/([a-z]+)$" "index.php?page=vans&pages=$1&method=$2"
+RewriteRule "^search-product/([0-9]+)$" "index.php?page=search-product&pages=$1"
+RewriteRule "^blog-detail/([0-9]+)/([a-zA-Z0-9-]+)$" "index.php?page=blog-detail&id=$1&name=$2"
+RewriteRule "^blog/([0-9]+)$" "index.php?page=blog&pages=$1"

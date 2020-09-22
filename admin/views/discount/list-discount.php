@@ -9,6 +9,7 @@
 	      <th class="text-center" >Phần trăm</th>
 	      <th class="text-center" >Ngày bắt đầu</th>
 	      <th class="text-center" >Ngày kết thúc</th>
+	      <th class="text-center" >Trạng thái</th>
 	      <?php if(!isset($_SESSION['nv'])){
   		  ?>
 	      <th class="text-center">Chức năng</th>
@@ -29,6 +30,7 @@
 	      <td class="text-center" ><?php echo $value['percent'] ?></td>
 	      <td class="text-center" ><?php echo date("H:i:s - d/m/Y",strtotime($value['day_create'])); ?></td>
 	      <td class="text-center" ><?php echo date("H:i:s - d/m/Y",strtotime($value['end_day'])); ?></td>
+	      <td class="text-center" ><?php if(time() > strtotime($value['end_day'])){echo "Hết hạn";}else{echo "Còn hạn";} ?></td>
 	      <?php if(!isset($_SESSION['nv'])){
   		  ?>
 	      <td class="text-center">

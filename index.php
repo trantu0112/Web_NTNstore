@@ -3,10 +3,25 @@
     session_start();
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     //session_destroy();
+    function makeUrl($string)
+    {
+        $string = trim($string);
+        $string = str_replace(' ', '-', $string);
+        $string = strtolower($string);
+        $string = preg_replace('/(á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ|Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ)/', 'a', $string);
+        $string = preg_replace('/(đ|Đ)/', 'd', $string);
+        $string = preg_replace('/(é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ)/', 'e', $string);
+        $string = preg_replace('/(í|ì|ỉ|ĩ|ị|Í|Ì|Ỉ|Ĩ|Ị)/', 'i', $string);
+        $string = preg_replace('/(ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ)/', 'o', $string);
+        $string = preg_replace('/(ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự)/', 'u', $string);
+        $string = preg_replace('/(ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ)/', 'u', $string);
+        return $string;
+    }
  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="http://php0320e2-1.itpsoft.com.vn/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,6 +70,14 @@
             }
 
             switch ($page) {
+                case 'error':
+                    include_once 'views/error.php';
+                    break;
+                case 'reset':
+                    include_once 'controller/Account_c.php';
+                    $pro = new Account_c();
+                    $pro->account();
+                    break;
                 case 'logout':
                     include_once 'controller/Account_c.php';
                     $pro = new Account_c();

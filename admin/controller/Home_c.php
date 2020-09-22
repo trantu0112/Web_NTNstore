@@ -36,7 +36,7 @@
 					//echo (strtotime("tomorrow") - strtotime('2020-9-8 00:00:0')).'<br>';
 					// echo date('Y-m-d H:i:s').'<br>';
 					// echo $rs_date[0]['date_order'];
-					echo 604800 - (time() - strtotime('2020-9-14 00:00:00')).'<br>';
+					//echo 604800 - (time() - strtotime('2020-9-14 00:00:00')).'<br>';
 					
 					$sum_day = 0;
 					$sum_week = 0;

@@ -15,6 +15,80 @@
 				$page = 'home';
 			}
 			switch ($page) {
+				case 'pass-reset':
+					if (isset($_SESSION['rand'])) {
+						$pass = $_POST['pass'];
+						$email = $_POST['email'];
+						if ($pass == $_SESSION['rand']) {
+							unset($_SESSION['noti-rand']);
+							$password = sha1('ntnshop.com');
+							$staticSalt = 'M5T7N1999@#!';
+							$pass = md5($staticSalt.$password);
+							$this->pro->resetPass($email, $pass);
+						}else{
+							$_SESSION['noti-rand'] = 1;
+						}
+					}
+					
+
+					break;
+				case 'get-email':
+					$email = $_POST['email'];
+					if (isset($_SESSION['get-email']) && $_SESSION['get-email'] == $email) {					
+						$rand = rand(100000,999999);
+						$data =  '<h5 style="color: #2AC37D; font-weight: bold;font-size: 25px;">Mã xác nhận của quý khách là: <strong style="color: red;">'.$rand.'</strong></h5><h5 style="color: #2AC37D; font-weight: bold;font-size: 25px;">Sau khi quý khách nhập đúng mã xác nhận mật khẩu của quý khách sẽ được đặt lại là: <strong>ntnshop.com</strong></h5>';
+						include_once 'PHPMailer/class.phpmailer.php';
+						include_once 'PHPMailer/class.smtp.php';
+
+						$mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch 
+
+						try {
+						    //Server settings
+						    $mail->CharSet = 'UTF-8';
+						    $mail->SMTPDebug = 0;                // Enable verbose debug output
+						    $mail->isSMTP();                                      // Send using SMTP
+						    $mail->Host       = 'smtp.gmail.com';              // Set the SMTP server to send through
+						    $mail->SMTPAuth   = true;                             // Enable SMTP authentication
+						    $mail->Username   = 'namnt721@wru.vn';               // SMTP username
+						    $mail->Password   = '0347173650';                         // SMTP password
+						    $mail->SMTPSecure = 'tls';   // Enable TLS encryption; PHPMailer::ENCRYPTION_SMTPS encouraged
+						    $mail->Port       = 587;                              // TCP port to connect to, use 465 for PHPMailer::ENCRYPTION_SMTPS above
+
+						    //Recipients
+						    $mail->setFrom('namnt721@wru.vn', 'Thông báo mã xác nhận');
+						    $mail->addAddress($email, $name);
+
+						    // Content
+						    $mail->isHTML(true);                                  // Set email format to HTML
+						    $mail->Subject = 'Mã Xác Nhận: ';
+						    $mail->Body    = $data;
+
+						    $mail->send();
+
+						    unset($_SESSION['get-email']);
+						    $_SESSION['rand'] = $rand;
+						    echo 'Message has been sent';
+						} catch (Exception $e) {
+						    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+						}
+
+					}	
+					break;
+				case 'check-email':
+					$email = $_POST['email'];
+					$rs = $this->pro->checkEmail($email);
+					if (count($rs) == 1){
+					 	unset($_SESSION['email-reset']);
+					 	$_SESSION['get-email'] = $email;
+					}else if($email == ''){
+						$_SESSION['email-reset'] = 1;
+						unset($_SESSION['get-email']);
+					}else{
+						$_SESSION['email-reset'] = 1;
+						unset($_SESSION['get-email']);
+					} 
+					break;
+
 				case 'check-out':
 					if (isset($_SESSION['id_account'])) {
 							$id = $_SESSION['id_account'];
@@ -49,20 +123,23 @@
 						}
 						$note = $_POST['note'];
 						$point = 0;
-						if (isset($_SESSION['id_account']) && isset($_SESSION['cart'])) {
-							$rs_point = $this->pro->getPoint($_SESSION['id_account']);
-							if (!isset($_SESSION['percent'])) {
-							
-								if ($_SESSION['sum'] > 1000000) {
-									$rs_point[0]['points'] += 100000;
-									$point = $rs_point[0]['points'];
-									$this->pro->updatePoint($_SESSION['id_account'], $point);
+
+						if ($rs_acc['phone'] != null && $rs_acc['addres'] != null) {
+							if (isset($_SESSION['id_account']) && isset($_SESSION['cart'])) {
+								$rs_point = $this->pro->getPoint($_SESSION['id_account']);
+								if (!isset($_SESSION['percent'])) {
+								
+									if ($_SESSION['sum'] > 1000000) {
+										$rs_point[0]['points'] += 100000;
+										$point = $rs_point[0]['points'];
+										$this->pro->updatePoint($_SESSION['id_account'], $point);
+									}
+								}
+								if (isset($_SESSION['points'])) {
+									$this->pro->updatePoint($_SESSION['id_account'], 0);
 								}
 							}
-							if (isset($_SESSION['points'])) {
-								$this->pro->updatePoint($_SESSION['id_account'], 0);
-							}
-						}
+						}		
 						
 						$data = '<main class="ps-main">
 			              <div class="ps-content pt-80 pb-80">
@@ -92,7 +169,7 @@
 					                $total = $value['qty'] * ($value['price'] * (1 - ($value['percent']/100)));
 					              }
 					              $data .= '<tr>
-					              	  <td style="border: 1px solid"><img style="width: 100px; height: 100px;" src="https://media3.scdn.vn/img3/2019/8_2/UwS70N_simg_de2fe0_500x500_maxb.jpg"></td>
+					              	  <td style="border: 1px solid"><img style="width: 100px; height: 100px;" src="php0320e2-1.itpsoft.com.vn/admin/images/product/'.$value['cate_name'].'/'.$value['img'].'"></td>
 					                  <td style="width: 400px;border: 1px solid;font-size: 18px;text-align: center;"> '.$value['product_name'].'</td>
 					                  
 					                  <td style="border: 1px solid; text-align: center;">'.$value['size'].'</td>
@@ -233,7 +310,7 @@
 							    $mail->Host       = 'smtp.gmail.com';              // Set the SMTP server to send through
 							    $mail->SMTPAuth   = true;                             // Enable SMTP authentication
 							    $mail->Username   = 'namnt721@wru.vn';               // SMTP username
-							    $mail->Password   = '01647173650';                         // SMTP password
+							    $mail->Password   = '0347173650';                         // SMTP password
 							    $mail->SMTPSecure = 'tls';   // Enable TLS encryption; PHPMailer::ENCRYPTION_SMTPS encouraged
 							    $mail->Port       = 587;                              // TCP port to connect to, use 465 for PHPMailer::ENCRYPTION_SMTPS above
 
@@ -532,10 +609,10 @@
 						$id = $_GET['id'];
 						$product = $this->pro->getId_product($id);
 						$rs_prod = $product[0];
-						$product_detail = $this->pro->getImgDetail($id);
-						if (isset($product_detail[0])) {
-							$rs_detail = $product_detail[0];
-						}
+						$rs_detail = $this->pro->getImgDetail($id);
+						// if (isset($product_detail[0])) {
+						// 	$rs_detail = $product_detail[0];
+						// }
 
 						if ($rs_prod == null) {
 							header("Location: index.php?page=home");
@@ -789,8 +866,6 @@
 						}
 					}
 					
-          
-					//$rs_pro = $this->pro->getPro();
 					$rs_pro_new = $this->pro->getProNew();
 					$rs_pro_sale = $this->pro->getProSale();
 					include_once 'views/home.php';

@@ -91,6 +91,38 @@ $(document).ready(function(){
 			$("#load-table-views").load("index.php?page=view-order #table-view");
 		});
 	});
+
+	$(document).on('click',"#reset_pw",function(e){
+		e.preventDefault();
+		$("#md_reset_pw").modal('show');
+	});
+
+	$(document).on('keyup',"#email_reset",function(e){
+		var email = $(this).val();
+		$.post('index.php?page=check-email', {email :email}, function(){
+			$("#load_email_reset").load("index.php?page=reset #ld_email_reset");
+			$("#load-btn-get-email").load("index.php?page=reset #btn-next");
+		});		
+	});
+
+	$(document).on('click',"#btn-next",function(){
+		var email = $('#email_reset').val();
+		$.post('index.php?page=get-email', {email :email}, function(){
+			
+		});	
+	});
+
+	$(document).on('click',"#sm-reset",function(){
+		var pass = $('#pass-reset').val();
+		var email = $('#email_reset').val();
+		$.post('index.php?page=pass-reset', {pass : pass, email : email}, function(){
+			$("#load-noti-rand").load("index.php?page=reset #noti-rand");
+			alert('Đặt lại mật khẩu thành công!');
+			location.href = 'index.php?page=login';
+		});	
+
+
+	});
 })
 
 function update_cart_minus(id, size){

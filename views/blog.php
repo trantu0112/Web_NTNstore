@@ -10,10 +10,10 @@
               ?>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                   <div class="ps-post mb-30">
-                    <div class="ps-post__thumbnail"><img style="width: 450px; height: 300px;" src="admin/images/blog/<?php echo $value['post_avatar'] ?>" alt=""><a class="ps-post__overlay" href="index.php?page=blog-detail&id=<?php echo $value['id_post'] ?>"></a></div>
-                    <div class="ps-post__content"><a class="ps-post__title" href="index.php?page=blog-detail&id=<?php echo $value['id_post'] ?>"><?php echo $value['post_name'] ?></a>
+                    <div class="ps-post__thumbnail"><img style="width: 450px; height: 300px;" src="admin/images/blog/<?php echo $value['post_avatar'] ?>" alt=""><a class="ps-post__overlay" href="blog-detail/<?php echo $value['id_post'].'/'.makeUrl($value['post_name']); ?>"></a></div>
+                    <div class="ps-post__content"><a class="ps-post__title" href="blog-detail/<?php echo $value['id_post'].'/'.makeUrl($value['post_name']); ?>"><?php echo $value['post_name'] ?></a>
                       <p class="ps-post__meta"><i class="fa fa-clock-o"></i> -<span class="ml-5"><?php echo $value['dateTime'] ?></span></p>
-                      <p><?php echo $value['description'] ?>…</p><a class="ps-morelink" href="index.php?page=blog-detail&id=<?php echo $value['id_post'] ?>">Chi tiết bài viết<i class="fa fa-long-arrow-right"></i></a>
+                      <p><?php echo $value['description'] ?>…</p><a class="ps-morelink" href="blog-detail/<?php echo $value['id_post'].'/'.makeUrl($value['post_name']); ?>">Chi tiết bài viết<i class="fa fa-long-arrow-right"></i></a>
                     </div>
                   </div>
                 </div>
@@ -24,7 +24,7 @@
             <div class="ps-product-action">
                 <div class="ps-pagination">
                     <ul class="pagination">
-                        <li><a class="page-link" href="index.php?page=blog&pages=<?php
+                        <li><a class="page-link" href="blog/<?php
                             if(isset($_GET['pages'])){
                                 $page = $_GET['pages'];
                                 if($page <= 1){
@@ -38,11 +38,11 @@
                         for ($i = 1; $i <= $pagination; $i++) {
                             ?>
 
-                            <li <?php if (isset($_GET["pages"]) && $_GET["pages"] == $i) {echo 'class="active"';} ?>><a class="page-link" href="index.php?page=blog&pages=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                            <li <?php if (isset($_GET["pages"]) && $_GET["pages"] == $i) {echo 'class="active"';} ?>><a class="page-link" href="blog/<?php echo $i; ?>"><?php echo $i; ?></a></li>
                             <?php
                         }
                         ?>
-                        <li><a href="index.php?page=blog&pages=<?php
+                        <li><a href="blog/<?php
                             if(isset($_GET['pages'])){
                                 $page = $_GET['pages'];
                                 if($page == $pagination){

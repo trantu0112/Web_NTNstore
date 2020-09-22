@@ -11,29 +11,6 @@
 			parent::__construct();
 		}
 
-
-		//Lấy danh sách ảnh
-		public function getImg(){
-			$sql = "SELECT tbl_product.product_name, tbl_img_product.id_product, tbl_img_product.name_img_1, tbl_img_product.name_img_2, tbl_img_product.name_img_3 FROM tbl_img_product, tbl_product WHERE tbl_img_product.id_product = tbl_product.id_product;";
-			$pre = $this->pdo->prepare($sql);
-			$pre->execute();
-			return $pre->fetchAll(PDO::FETCH_ASSOC);
-		}
-
-		public function getPageImg($from, $row){
-			$sql = "SELECT tbl_product.product_name, tbl_img_product.id_product, tbl_img_product.name_img_1, tbl_img_product.name_img_2, tbl_img_product.name_img_3 FROM tbl_img_product, tbl_product WHERE tbl_img_product.id_product = tbl_product.id_product ORDER BY tbl_img_product.id_product DESC LIMIT $from, $row;";
-			$pre = $this->pdo->prepare($sql);
-			$pre->execute();
-			return $pre->fetchAll(PDO::FETCH_ASSOC);
-		}
-		public function getNumber(){
-			$sql = "SELECT tbl_img_product.id_product FROM tbl_img_product";
-			$pre = $this->pdo->prepare($sql);
-
-			$pre->execute();
-			return $pre->fetchAll(PDO::FETCH_ASSOC);
-		}
-
 		//lấy tên sản phẩm
 		public function getNameImg(){
 			$sql = "SELECT tbl_product.id_product, tbl_product.product_name FROM tbl_product;";
@@ -42,15 +19,30 @@
 			return $pre->fetchAll(PDO::FETCH_ASSOC);
 		}
 
+		//Lấy danh sách ảnh
+		public function getImg($id_detail_img){
+			$sql = "SELECT tbl_product.product_name, tbl_img_product.id_product, tbl_img_product.name_img FROM tbl_img_product, tbl_product WHERE tbl_img_product.id_product = tbl_product.id_product AND tbl_img_product.id_detail_img = :id_detail_img;";
+			$pre = $this->pdo->prepare($sql);
+			$pre->bindParam(':id_detail_img',$id_detail_img);
+			$pre->execute();
+			return $pre->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function getIdImg($id_product){
+			$sql = "SELECT tbl_product.product_name, tbl_img_product.id_product, tbl_img_product.id_detail_img, tbl_img_product.name_img FROM tbl_img_product, tbl_product WHERE tbl_img_product.id_product = :id_product AND tbl_img_product.id_product = tbl_product.id_product;";
+			$pre = $this->pdo->prepare($sql);
+			$pre->bindParam(':id_product', $id_product);
+			$pre->execute();
+			return $pre->fetchAll(PDO::FETCH_ASSOC);
+		}
+
 		//Thêm ảnh
-		public function addImg($id_product, $name_img_1, $name_img_2, $name_img_3){
-			$sql = "INSERT INTO tbl_img_product (id_product, name_img_1, name_img_2, name_img_3) VALUES (:id_product, :name_img_1, :name_img_2, :name_img_3);";
+		public function addImg($id_product, $name_img){
+			$sql = "INSERT INTO tbl_img_product (id_product, name_img) VALUES (:id_product, :name_img);";
 			$pre = $this->pdo->prepare($sql);
 
 			$pre->bindParam(':id_product', $id_product);
-			$pre->bindParam(':name_img_1', $name_img_1);
-			$pre->bindParam(':name_img_2', $name_img_2);
-			$pre->bindParam(':name_img_3', $name_img_3);
+			$pre->bindParam(':name_img', $name_img);
 
 			if ($pre->execute()) {
 				header('Location: index.php?page=list-img');
@@ -60,14 +52,14 @@
 		}
 
 		//Xóa ảnh 
-		public function delImg($id_product){
-			$sql = "DELETE FROM tbl_img_product WHERE tbl_img_product.id_product = :id_product";
+		public function delImg($id_detail_img){
+			$sql = "DELETE FROM tbl_img_product WHERE tbl_img_product.id_detail_img = :id_detail_img";
 			$pre = $this->pdo->prepare($sql);
 
-			$pre->bindParam(':id_product',$id_product);
+			$pre->bindParam(':id_detail_img',$id_detail_img);
 
 			if ($pre->execute()) {
-				header('Location: index.php?page=list-img');
+				
 			}else{
 				echo "Không thể xóa!";
 			}
