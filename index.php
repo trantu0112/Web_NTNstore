@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="http://php0320e2-1.itpsoft.com.vn/">
+    <base href="http://localhost/Project_done/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
