@@ -32,7 +32,7 @@
 			$pre->execute();
 			return $pre->fetchAll(PDO::FETCH_ASSOC);
 		}
-		//lấy ra tổng số tài khoản
+		//
 		public function dateOrder(){
 			$sql = "SELECT date_order, sum_total FROM tbl_order";
 			$pre = $this->pdo->prepare($sql);

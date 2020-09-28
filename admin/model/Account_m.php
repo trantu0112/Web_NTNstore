@@ -58,6 +58,7 @@
 			$pre->bindParam(':img_avarta',$img_avarta);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-acc'] = 1;
 				header('Location: index.php?page=list-account');
 			}else{
 				echo "Thêm mới thất bại";
@@ -72,6 +73,7 @@
 			$pre->bindParam(':id_account',$id_account);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-acc'] = 2;
 				header('Location: index.php?page=list-account');
 			}else{
 				echo "Không thể xóa!";
@@ -79,10 +81,10 @@
 		}
 
 		//Sửa tài khoản
-		public function editAcc($id_account, $display_name, $user_name, $phone, $email, $addres, $password, $type, $points, $img_avarta){
+		public function editAcc($id_account, $display_name, $user_name, $phone, $email, $addres, $type, $points, $img_avarta){
 
 
-			$sql = "UPDATE tbl_account SET display_name = :display_name, user_name = :user_name, phone = :phone, email = :email, addres = :addres, password = :password, type = :type, points = :points, img_avarta = :img_avarta WHERE tbl_account.id_account = :id_account;";
+			$sql = "UPDATE tbl_account SET display_name = :display_name, user_name = :user_name, phone = :phone, email = :email, addres = :addres, type = :type, points = :points, img_avarta = :img_avarta WHERE tbl_account.id_account = :id_account;";
 			$pre = $this->pdo->prepare($sql);
 
 			$pre->bindParam(':id_account', $id_account);
@@ -91,7 +93,6 @@
 			$pre->bindParam(':phone', $phone);
 			$pre->bindParam(':email', $email);
 			$pre->bindParam(':addres', $addres);
-			$pre->bindParam(':password', $password);
 			$pre->bindParam(':type', $type);
 			$pre->bindParam(':points', $points);
 			$pre->bindParam(':img_avarta', $img_avarta);
@@ -102,6 +103,7 @@
 				unset($_SESSION['user']);
 				unset($_SESSION['pass']);
 				unset($_SESSION['point']);
+				$_SESSION['noti-acc'] = 3;
 				header('Location: index.php?page=list-account');
 			}else{
 				echo "Cập nhật thất bại";

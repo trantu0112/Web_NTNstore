@@ -1,3 +1,4 @@
+<?php include_once 'views/noti/noti.php'; ?>
 <div class="page-title">
   <!-- Bảng -->
   <h3> Danh sách mã giảm giá</h3>

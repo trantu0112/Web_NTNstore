@@ -24,23 +24,20 @@
 						$id_product = $_POST['name'];
 						
 						$file = $_FILES['avatar'];
-					
+
+                        $arrnameFile = [];
 						$countFile = count($file['name']);
 						for ($i=0; $i < $countFile; $i++) {
-							$fileName = $name.$file['name'][$i]; //lấy thời gian đặt tên file để ko bị trùng 
-							move_uploaded_file($file["tmp_name"][$i], "images/img_detail/".$fileName);
-							$this->img->addImg($id_product, $fileName);
-							// $check = getimagesize($file['tmp_name'][$i]);	
-							// if ($check == true && $file['size'][$i] < $maxfileSize) {
-							// 	array_push($arrnameFile, $fileName);
-							// 	move_uploaded_file($file["tmp_name"][$i], "img/".$fileName);
-							// 	$allowUpload = true;
-							// }else{
-							// 	$allowUpload = false;
-							// }				
+							$fileName = $name.$file['name'][$i];
+
+							 $check = getimagesize($file['tmp_name'][$i]);
+							 if ($check == true) {
+							 	array_push($arrnameFile, $fileName);
+							 	move_uploaded_file($file["tmp_name"][$i], "img/".$fileName);
+							 	$this->img->addImg($id_product, $fileName);
+							 }
 						}
 						header('Location: index.php?page=list-img&id='.$id_product);
-
 					}
 					$rs_name_img = $this->img->getNameImg();
 					include_once 'views/img_pro_detail/add-img.php';
@@ -66,10 +63,16 @@
 								$img_n = $img_o;
 								$img = $img_n;
 							}
-							move_uploaded_file($file["tmp_name"], "images/img_detail/".$img);
-							unset($_SESSION['name']);
-							header('Location: index.php?page=list-img&id='.$id_product);
-
+                            // Check file img
+                            $check = getimagesize($file['tmp_name']);
+                            if ($check == true ) {
+                                move_uploaded_file($file["tmp_name"], "images/img_detail/".$img);
+                                unset($_SESSION['name']);
+                                $_SESSION['noti-img'] = 3;
+                                header('Location: index.php?page=list-img&id='.$id_product);
+                            }else{
+                                echo "Không xác định được ảnh!";
+                            }
 						}
 					}
 					

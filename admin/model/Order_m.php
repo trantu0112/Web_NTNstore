@@ -62,7 +62,9 @@
 			$pre = $this->pdo->prepare($sql);
 
 			$pre->bindParam(':id_order', $id_order);
-			$pre->execute();
+			if ($pre->execute()) {
+				$_SESSION['noti-order'] = 1;
+			}
 		}
 
 		public function updateStatusM($id_order){
@@ -70,14 +72,18 @@
 			$pre = $this->pdo->prepare($sql);
 
 			$pre->bindParam(':id_order', $id_order);
-			$pre->execute();
+			if ($pre->execute()) {
+				$_SESSION['noti-order'] = 2;
+			}
 		}
 		public function updateStatusF($id_order){
 			$sql = "UPDATE tbl_order SET status = 'Hoàn thành' WHERE tbl_order.id_order = :id_order";
 			$pre = $this->pdo->prepare($sql);
 
 			$pre->bindParam(':id_order', $id_order);
-			$pre->execute();
+			if ($pre->execute()) {
+				$_SESSION['noti-order'] = 3;
+			}
 		}
 
 		//xóa mã giảm giá
@@ -88,6 +94,7 @@
 			$pre->bindParam(':id_order',$id_order);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-order'] = 4;
 				header('Location: index.php?page=list-order');
 			}else{
 				echo "Không thể xóa!";

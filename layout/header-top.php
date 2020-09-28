@@ -2,7 +2,7 @@
   <div class="container-fluid">
   	<div class="row">
       <div class="col-lg-6 col-md-8 col-sm-6 col-xs-12 ">
-        <p>Số 1, Đường Lĩnh Nam, Hoàng Mai, Hà Nội  -  Hotline: 0347173650</p>
+        <p>Số 3 ngõ 325 Kim Ngưu, Hai Bà Trưng, Hà Nội, Việt Nam  -  Hotline: 0935709669</p>
       </div>
 
       <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12 ">

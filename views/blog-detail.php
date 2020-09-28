@@ -40,6 +40,7 @@
                       <div class="ps-widget__header">
                           <h3>BÀI VIẾT KHÁC</h3>
                       </div>
+                      <div class="scroll">
                       <?php
                       foreach ($rs_blog as $key => $value) {
                       ?>
@@ -52,6 +53,7 @@
                           <?php
                       }
                       ?>
+                      </div>
                   </aside>
                     <aside class="ps-widget--sidebar">
                     <div class="ps-widget__header">

@@ -36,6 +36,7 @@
 			$pre->bindParam(':day_create', $day_create);
 			$pre->bindParam(':end_day', $end_day);
 			if($pre->execute()){
+				$_SESSION['noti-discount'] = 1;
 				header("Location: index.php?page=list-discount");
 			}
 			
@@ -51,6 +52,7 @@
 			$pre->bindParam(':day_create', $day_create);
 			$pre->bindParam(':end_day', $end_day);
 			if($pre->execute()){
+				$_SESSION['noti-discount'] = 2;
 				header("Location: index.php?page=list-discount");
 			}
 			
@@ -64,6 +66,7 @@
 			$pre->bindParam(':id_discount',$id_discount);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-discount'] = 3;
 				header('Location: index.php?page=list-discount');
 			}else{
 				echo "Không thể xóa!";

@@ -59,6 +59,9 @@ if (!isset($_GET['id-order']) || !isset($_GET['id-acc'])) {
 	    </tr>
 	</tbody>
 </table>
+<div>
+	<h3><a href="index.php?page=list-order&method=list">Quay lại</a></h3>
+</div>
 </div>
 <div style="float: right;">
     <h3> Trừ điểm: <?php echo $rs_order[0]['minus_points'] ?></h3>

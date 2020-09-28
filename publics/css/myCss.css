@@ -200,3 +200,7 @@ button.close {
 ::-webkit-scrollbar-thumb:hover {
     background: #2AC37D;
 }
+.scroll{
+    overflow-y: scroll;
+    height:1000px;
+}

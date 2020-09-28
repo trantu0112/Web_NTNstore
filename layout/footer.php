@@ -7,12 +7,12 @@
             <header><a class="ps-logo" href="index.php"><img src="publics/images/logo-white.png" alt=""></a>
               <h3 class="ps-widget__title">Địa chỉ cơ sở 1</h3>
             </header>
-            <footer>
-              <p><strong>276 Đại Từ, Hoàng Mai, Hà Nội, Việt Nam</strong></p>
-              <p>Email: <a href='mailto:namdaitu1@gmail.com'>support@ntn.com</a></p>
-              <p>Phone: +036 360 3868</p>
-              <p>Fax: ++036 360 3868</p>
-            </footer>
+              <footer>
+                  <p><strong>325 Kim Ngưu, Hai Bà Trưng, Hà Nội, Việt Nam</strong></p>
+                  <p>Email: <a href='mailto:tranu01121999@gmail.com'>support@ntn.com</a></p>
+                  <p>Phone: +034 717 3650</p>
+                  <p>Fax: ++034 717 3650</p>
+              </footer>
           </aside>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
@@ -20,12 +20,12 @@
             <header>
               <h3 class="ps-widget__title">Địa chỉ cơ sở 2</h3>
             </header>
-            <footer>
-              <p><strong>325 Kim Ngưu, Hai Bà Trưng, Hà Nội, Việt Nam</strong></p>
-              <p>Email: <a href='mailto:tranu01121999@gmail.com'>support@ntn.com</a></p>
-              <p>Phone: +034 717 3650</p>
-              <p>Fax: ++034 717 3650</p>
-            </footer>
+              <footer>
+                  <p><strong>276 Đại Từ, Hoàng Mai, Hà Nội, Việt Nam</strong></p>
+                  <p>Email: <a href='mailto:namdaitu1@gmail.com'>support@ntn.com</a></p>
+                  <p>Phone: +036 360 3868</p>
+                  <p>Fax: ++036 360 3868</p>
+              </footer>
           </aside>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 ">

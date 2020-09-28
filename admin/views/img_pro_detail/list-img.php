@@ -1,4 +1,4 @@
-
+<?php include_once 'views/noti/noti.php'; ?>
 <div class="page-title">
 	<?php 
   		foreach ($rs_name as $key => $value) {

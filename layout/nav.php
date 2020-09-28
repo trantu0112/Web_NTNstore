@@ -17,7 +17,7 @@
         <li class="menu-item">
           <a href="nike/1">Nike</a>
         </li>
-
+f
         <li class="menu-item">
           <a href="vans/1">Vans</a>
         </li>
@@ -30,7 +30,7 @@
 
     <div class="navigation__column right">
       <!-- form tìm kiếm -->
-      <form  role="search" action="index.php?page=search-product&pages=1" method="post">
+      <form  role="search" action="search-product/1" method="post">
         <input class="search" required="" name="keys" class="form-control" type="text" placeholder="Tìm kiếm sản phẩm">
         <button class="icon_sr" type="submit" name="sb_search"></button>
       </form>

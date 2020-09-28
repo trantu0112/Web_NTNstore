@@ -1,3 +1,4 @@
+<?php include_once 'views/noti/noti.php'; ?>
 <div class="page-title">
   <div class="title_left">
     <h3> Thêm mới danh mục</h3>

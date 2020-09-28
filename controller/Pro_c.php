@@ -88,7 +88,6 @@
 						unset($_SESSION['get-email']);
 					} 
 					break;
-
 				case 'check-out':
 					if (isset($_SESSION['id_account'])) {
 							$id = $_SESSION['id_account'];
@@ -610,9 +609,6 @@
 						$product = $this->pro->getId_product($id);
 						$rs_prod = $product[0];
 						$rs_detail = $this->pro->getImgDetail($id);
-						// if (isset($product_detail[0])) {
-						// 	$rs_detail = $product_detail[0];
-						// }
 
 						if ($rs_prod == null) {
 							header("Location: index.php?page=home");
@@ -622,28 +618,33 @@
 						if (isset($_POST['sm_addCart'])) {
 							$size = $_POST['size'];
 							$qty = $_POST['qty'];
-							if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
-								$_SESSION['cart'][$id][$size] = $rs_prod;
-								$_SESSION['cart'][$id][$size]['qty'] = $qty;
-								$_SESSION['cart'][$id][$size]['size'] = $size;
+							if ($qty < 1) {
+								$_SESSION['noti-qty'] = 1;
 							}else{
-								if (array_key_exists($id, $_SESSION['cart'])) {
-									if (isset($_SESSION['cart'][$id][$size]['size']) && $size == $_SESSION['cart'][$id][$size]['size']) {
-										$_SESSION['cart'][$id][$size]['qty'] += $qty;
-										$_SESSION['cart'][$id][$size]['size'] = $size;
-									}
-									else{
-										$_SESSION['cart'][$id][$size] = $rs_prod;
-										$_SESSION['cart'][$id][$size]['qty'] = $qty;
-										$_SESSION['cart'][$id][$size]['size'] = $size;
-									}	
-								}else{
+								if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
 									$_SESSION['cart'][$id][$size] = $rs_prod;
 									$_SESSION['cart'][$id][$size]['qty'] = $qty;
 									$_SESSION['cart'][$id][$size]['size'] = $size;
+								}else{
+									if (array_key_exists($id, $_SESSION['cart'])) {
+										if (isset($_SESSION['cart'][$id][$size]['size']) && $size == $_SESSION['cart'][$id][$size]['size']) {
+											$_SESSION['cart'][$id][$size]['qty'] += $qty;
+											$_SESSION['cart'][$id][$size]['size'] = $size;
+										}
+										else{
+											$_SESSION['cart'][$id][$size] = $rs_prod;
+											$_SESSION['cart'][$id][$size]['qty'] = $qty;
+											$_SESSION['cart'][$id][$size]['size'] = $size;
+										}	
+									}else{
+										$_SESSION['cart'][$id][$size] = $rs_prod;
+										$_SESSION['cart'][$id][$size]['qty'] = $qty;
+										$_SESSION['cart'][$id][$size]['size'] = $size;
+									}
 								}
+								header("Location: ../../cart");
 							}
-							header("Location: index.php?page=cart");
+							
 						}
 					if (isset($_SESSION['id_account'])) {
 						$id_account = $_SESSION['id_account'];

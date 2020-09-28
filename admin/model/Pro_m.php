@@ -69,6 +69,7 @@
 			$pre->bindParam(':percent',$percent);
 			if ($pre->execute()) {
 				header('Location: index.php?page=list-product');
+				$_SESSION['noti-pro'] = 1;
 			}else{
 				echo "Thêm mới thất bại!";
 			}
@@ -94,6 +95,7 @@
 				unset($_SESSION['qty']);
 				unset($_SESSION['price']);
 				unset($_SESSION['desc']);
+				$_SESSION['noti-pro'] = 2;
 				header('Location: index.php?page=list-product');
 			}else{
 				echo "Cập nhật thất bại";
@@ -108,6 +110,7 @@
 			$pre->bindParam(':id_product',$id_product);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-pro'] = 3;
 				header('Location: index.php?page=list-product');
 			}else{
 				echo "Không thể xóa!";

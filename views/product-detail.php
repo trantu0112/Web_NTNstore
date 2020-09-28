@@ -1,4 +1,11 @@
 <!-- modal thông báo -->
+<?php if (isset($_SESSION['noti-qty']) && $_SESSION['noti-qty'] == 1) {
+?>
+<div style="width: 210px; float: right" class="alert alert-success" role="alert">
+  Số lượng bạn nhập vào không đúng yêu cầu nhập lại!
+</div>
+<?php
+unset($_SESSION['noti-qty']);} ?>
 <div style="width: 210px; float: right;display: none;" id="alert_tb_rt" class="alert alert-success" role="alert">
   Cảm ơn bạn đã đánh giá!
 </div>
@@ -97,7 +104,7 @@
                <div class="item"><img src="admin/images/img_detail/<?php echo $value['name_img'] ?>" alt=""></div>
                <?php
               } ?>
-            </div><a class="popup-youtube ps-product__video" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><img src="../publics/images/shoe-detail/1.jpg" alt=""><i class="fa fa-play"></i></a>
+            </div>
           </div>
           <div class="ps-product__image">
             <?php foreach ($rs_detail as $key => $value) {
@@ -108,7 +115,7 @@
           </div>
         </div>
         <div class="ps-product__thumbnail--mobile">
-          <div class="ps-product__main-img"><img src="../publics/images/shoe-detail/1.jpg" alt=""></div>
+          <div class="ps-product__main-img"><img src="" alt=""></div>
           <div class="ps-product__preview owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="20" data-owl-nav="true" data-owl-dots="false" data-owl-item="3" data-owl-item-xs="3" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="3" data-owl-duration="1000" data-owl-mousedrag="on"><img src="../publics/images/shoe-detail/1.jpg" alt=""><img src="../publics/images/shoe-detail/2.jpg" alt=""><img src="../publics/images/shoe-detail/3.jpg" alt=""></div>
         </div>
         <div class="ps-product__info">

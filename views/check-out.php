@@ -1,3 +1,7 @@
+<?php
+if (isset($_SESSION['id_account'])) {
+  if ($rs_acc['addres'] != null && $rs_acc['phone'] != null) {
+?>
 <div class="modal fade" id="alert-check-out" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="margin-left: 245px;">
         <div class="modal-content" style="width: 630px;padding-right: 25px;padding-top: 25px;">  
@@ -9,6 +13,24 @@
         </div>
     </div>
 </div>
+<?php 
+  }
+}else{
+?>
+<div class="modal fade" id="alert-check-out" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="margin-left: 245px;">
+        <div class="modal-content" style="width: 630px;padding-right: 25px;padding-top: 25px;">  
+            
+            <div class="modal-body">
+                    <h3><strong>Đặt hàng thành công!</strong> Đơn hàng đã được gửi vào Email của quý khách. Cảm ơn quý khách đã lựa chọn <strong style="color: #2AC37D">NTN STORE</strong></h3>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<?php
+} 
+?>
 <?php if (isset($_SESSION['add_account'])) {
 ?>
 <div style="width: 200px; position: fixed; right: 0px;z-index: 99999;" id="noti_add_account" class="alert alert-success alert_update" role="alert">

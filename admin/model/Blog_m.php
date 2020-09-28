@@ -57,6 +57,7 @@ class Blog_m extends Connect
         $pre->bindParam(':content',$content);
         $pre->bindParam(':dateTime',$dateTime);
         if ($pre->execute()) {
+            $_SESSION['noti-blog'] = 1;
             header('Location: index.php?page=list-blog');
         }else{
             echo "Thêm mới thất bại!";
@@ -77,6 +78,7 @@ class Blog_m extends Connect
             unset($_SESSION['name']);
             unset($_SESSION['description']);
             unset($_SESSION['content']);
+            $_SESSION['noti-blog'] = 2;
             header('Location: index.php?page=list-blog');
         }else{
             echo "Cập nhật thất bại";
@@ -91,6 +93,7 @@ class Blog_m extends Connect
         $pre->bindParam(':id_post',$id_post);
 
         if ($pre->execute()) {
+            $_SESSION['noti-blog'] = 3;
             header('Location: index.php?page=list-blog');
         }else{
             echo "Không thể xóa!";

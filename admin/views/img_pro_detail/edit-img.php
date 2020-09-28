@@ -11,7 +11,7 @@
 
 	<div class="form-group">
 
-		<label for="">Ảnh thứ nhất</label>
+		<label for="">Ảnh </label>
 		<input style="width: 230px;" type="file" name="img" multiple="" class="form-control" id="">
 	</div>
 

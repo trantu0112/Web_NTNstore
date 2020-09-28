@@ -42,8 +42,15 @@
 						}else{
 							$fileName = $user.'_'.$file['name'];
 						}
-						move_uploaded_file($file["tmp_name"], "images/account/".$fileName);
-						$this->acc->addAcc($name, $user, $password, $type, $fileName);
+
+						// Check file img
+						$check = getimagesize($file['tmp_name']);
+						if ($check == true ) {
+							move_uploaded_file($file["tmp_name"], "images/account/".$fileName);
+							$this->acc->addAcc($name, $user, $password, $type, $fileName);
+						}else{
+							echo "Không xác định được ảnh đại diện!";
+						}
 					}
 					include_once 'views/account/add-account.php';
 					break;
@@ -65,7 +72,6 @@
 								$_SESSION['phone'] = $value['phone'];
 								$_SESSION['email'] = $value['email'];
 								$_SESSION['addres'] = $value['addres'];
-								$_SESSION['pass'] = $value['password'];
 								$_SESSION['point'] = $value['points'];
 								$fileName_o = $value['img_avarta'];						
 							}
@@ -79,9 +85,7 @@
 						$phone = $_POST['phone'];					
 						$email = $_POST['email'];					
 						$addres = $_POST['addres'];					
-						$pass = $_POST['pass'];
 						$points = $_POST['point'];
-
 
 						$file = $_FILES['avatar'];
 						$fileName_n = $file['name'];
@@ -91,8 +95,15 @@
 							$fileName_n = $fileName_o;
 							$fileName = $fileName_n;
 						}
-						move_uploaded_file($file["tmp_name"], "images/account/".$fileName);
-						$this->acc->editAcc($id, $name, $user, $phone, $email, $addres, $pass, $type, $points, $fileName);
+
+						// Check file img
+						$check = getimagesize($file['tmp_name']);
+						if ($check == true ) {
+							move_uploaded_file($file["tmp_name"], "images/account/".$fileName);
+							$this->acc->editAcc($id, $name, $user, $phone, $email, $addres, $type, $points, $fileName);
+						}else{
+							echo "Không xác định được ảnh đại diện!";
+						}
 					}
 					include_once 'views/account/edit-account.php';
 					break;	

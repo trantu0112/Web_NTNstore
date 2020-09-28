@@ -28,7 +28,7 @@
 			$pre->bindParam(':cate_name',$cate_name);
 			
 			if ($pre->execute()) {
-				header('Location: index.php?page=list-cate');
+				$_SESSION['noti-cate'] = 1;
 			}else{
 				echo "Thêm mới thất bại";
 			}
@@ -44,6 +44,7 @@
 
 			if ($pre->execute()) {
 				unset($_SESSION['cate_name']);
+				$_SESSION['noti-cate'] = 2;
 				header('Location: index.php?page=list-cate');
 			}else{
 				echo "Cập nhật thất bại";
@@ -58,6 +59,7 @@
 			$pre->bindParam(':id_cate',$id_cate);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-cate'] = 3;
 				header('Location: index.php?page=list-cate');
 			}else{
 				echo "Không thể xóa!";

@@ -1,4 +1,6 @@
 RewriteEngine On
+RewriteRule "^([a-z]+)$" "index.php?page=$1"
+ErrorDocument 404 http://php0320e2-1.itpsoft.com.vn/error
 
 RewriteRule "home" "index.php"
 RewriteRule "^([a-zA-Z0-9]+)/([0-9]+)$" "index.php?page=$1&pages=$2"

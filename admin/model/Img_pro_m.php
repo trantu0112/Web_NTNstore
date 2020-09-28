@@ -45,6 +45,7 @@
 			$pre->bindParam(':name_img', $name_img);
 
 			if ($pre->execute()) {
+				$_SESSION['noti-img'] = 1;
 				header('Location: index.php?page=list-img');
 			}else{
 				echo "thêm mới thất bại";
@@ -59,7 +60,7 @@
 			$pre->bindParam(':id_detail_img',$id_detail_img);
 
 			if ($pre->execute()) {
-				
+				$_SESSION['noti-img'] = 2;
 			}else{
 				echo "Không thể xóa!";
 			}

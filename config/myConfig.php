@@ -4,9 +4,9 @@
 	 */
 	class Connect
 	{
-		private $strCon = 'mysql:host=localhost;dbname=PHP0320E2_nhom1';
-		private $user = 'PHP0320E2_nhom1';
-		private $passw = 'PHP0320E2_nhom1*';
+        private $strCon = 'mysql:host=localhost;dbname=PHP0320E2_nhom1';
+        private $user = 'root';
+        private $passw = '';
 		protected $pdo = null;
 		function __construct()
 		{

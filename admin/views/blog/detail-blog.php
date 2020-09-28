@@ -21,8 +21,8 @@ foreach ($rs_blog as $key => $value) {
 					<?php echo $value["content"] ?>
 				</fieldset>
 				<!-- btn -->
-				<a href="index.php?page=list-blog&method=edit&id=<?php echo $value["id_post"];?>" class="btn btn-primary">Cập nhật</a>
-				<a href="index.php?page=list-blog&method=list" class="btn btn-success">Quay lại</a>
+				<a href="index.php?page=list-blog&method=edit&id=<?php echo $value["id_post"];?>" class="btn btn-dark">Cập nhật</a>
+				<a href="index.php?page=list-blog&method=list" class="btn btn-dark">Quay lại</a>
 			</div>
 		</div>
 	</div>

@@ -58,18 +58,27 @@
 							$fileName = $fileName_n;
 						}
 
+                        $allowUpload = 1; //Biến kiểm tra
 						foreach ($rs_cate as $key => $value) {
 							$id_cate = $value['id_cate'];
 							$name_cate = $value['cate_name'];
-							if ($cate == $id_cate && $name_cate == 'NIKE') {
+                            $check = getimagesize($file['tmp_name']);
+							if ($cate == $id_cate && $name_cate == 'NIKE' && $check == true) {
 								move_uploaded_file($file["tmp_name"], "images/product/Nike/".$fileName);
-							}else if ($cate == $id_cate && $name_cate == 'ADIDAS'){
+                                $this->pro->editPro($id, $cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else if ($cate == $id_cate && $name_cate == 'ADIDAS' && $check == true){
 								move_uploaded_file($file["tmp_name"], "images/product/Adidas/".$fileName);
-							}else if ($cate == $id_cate && $name_cate == 'VANS'){
+                                $this->pro->editPro($id, $cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else if ($cate == $id_cate && $name_cate == 'VANS' && $check == true){
 								move_uploaded_file($file["tmp_name"], "images/product/Vans/".$fileName);
-							}
+                                $this->pro->editPro($id, $cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else{
+                                $allowUpload = 1;
+                            }
 						}
-						$this->pro->editPro($id, $cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+                        if ($allowUpload == 1) {
+                            echo "Không xác định được ảnh mẫu giầy!";
+                        }
 					}
 					include_once 'views/product/edit-product.php';
 					break;
@@ -88,18 +97,27 @@
 						$file = $_FILES['avatar'];
 						$fileName = $cate.'_'.$file['name'];
 
+                        $allowUpload = 1; //Biến kiểm tra
 						foreach ($rs_cate as $key => $value) {
 							$id_cate = $value['id_cate'];
 							$name_cate = $value['cate_name'];
-							if ($cate == $id_cate && $name_cate == 'NIKE') {
+                            $check = getimagesize($file['tmp_name']);
+							if ($cate == $id_cate && $name_cate == 'NIKE' && $check == true) {
 								move_uploaded_file($file["tmp_name"], "images/product/Nike/".$fileName);
-							}else if ($cate == $id_cate && $name_cate == 'ADIDAS'){
+                                $this->pro->addPro($cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else if ($cate == $id_cate && $name_cate == 'ADIDAS' && $check == true){
 								move_uploaded_file($file["tmp_name"], "images/product/Adidas/".$fileName);
-							}else if ($cate == $id_cate && $name_cate == 'VANS'){
+                                $this->pro->addPro($cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else if ($cate == $id_cate && $name_cate == 'VANS' && $check == true){
 								move_uploaded_file($file["tmp_name"], "images/product/Vans/".$fileName);
-							}
+                                $this->pro->addPro($cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+							}else{
+                                $allowUpload = 1;
+                            }
 						}
-						$this->pro->addPro($cate, $name, $qty, $price, $fileName, $desc, $status, $percent);
+                        if ($allowUpload == 1) {
+                            echo "Không xác định được ảnh mẫu giầy!";
+                        }
 					}
 
 					include_once 'views/product/add-product.php';

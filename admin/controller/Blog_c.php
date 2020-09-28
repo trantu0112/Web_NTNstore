@@ -57,9 +57,14 @@ class Blog_c extends Blog_m
                         $avatar = $avatar_n;
                     }
 
-                    move_uploaded_file($file["tmp_name"], "images/blog/".$avatar);
-
-                    $this->blog->editBlog($avatar, $name, $description, $content, $id);
+                    // Check file img
+                    $check = getimagesize($file['tmp_name']);
+                    if ($check == true ) {
+                        move_uploaded_file($file["tmp_name"], "images/blog/".$avatar);
+                        $this->blog->editBlog($avatar, $name, $description, $content, $id);
+                    }else{
+                        echo "Không xác định được ảnh!";
+                    }
                 }
                 include_once 'views/blog/edit-blog.php';
                 break;
@@ -72,9 +77,15 @@ class Blog_c extends Blog_m
 
                     $file = $_FILES['avatar'];
                     $avatar = $file['name'];
-                    move_uploaded_file($file["tmp_name"], "images/blog/".$avatar);
 
-                    $this->blog->addBlog($avatar, $name, $description, $content, $dateTime);
+                    // Check file img
+                    $check = getimagesize($file['tmp_name']);
+                    if ($check == true ) {
+                        move_uploaded_file($file["tmp_name"], "images/blog/".$avatar);
+                        $this->blog->addBlog($avatar, $name, $description, $content, $dateTime);
+                    }else{
+                        echo "Không xác định được ảnh!";
+                    }
                 }
                 include_once 'views/blog/add-blog.php';
                 break;
